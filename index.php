@@ -14,12 +14,10 @@ require 'db_conn.php';
     <link rel ="stylesheet" href = "css/style.css">
 </head>
 <body>
-    <div class="main-section">
-        <div class="add-section">
-            <from action="">
-                <input type ="text"
-                       name ="title"
-                       placeholder="This field is required"/>
+<div class="main-section">
+        <div class="add-section" >
+            <from action="add.php" method="POST" aria-autocomplete="" >
+                <input type ="text" name ="title" placeholder="This field is required"/>
                 <button type = "submit">Add &nbsp;<span>&#43;</span>
              </button>
             </from>
@@ -31,7 +29,6 @@ require 'db_conn.php';
          
             <?php if ($todo-> num_rows <= 0){ ?> 
                 <div class="todo-item">
-                       
                     <div class = "empty">
                         <img src = "img/f.png" width ="100%"/>
                         <img src ="img/Ellipsis.gif" width ="80px"/>
@@ -43,13 +40,27 @@ require 'db_conn.php';
                     
                     while($row = mysqli_fetch_assoc($result)) {?>
                     <div class = "todo-item" >
+                        
                         <span id="<?php echo $row["id"];?>"
                                 class="remove-to-do">x</span>
-                        <input type="checkbox">
-                        <h2><?php echo $row["title"]." Time: ".$row["data_time"]. "<br> ";?></h2>
+                        <?php if ($row["checked"]){?>
+                            <input type="checkbox"
+                                class ="check-box"
+                                cheked />
+                            <h2 class ="checked"><?php echo $row["title"] ?> </h2>
+                        <?php }else {?>
+                            <input type="checkbox"
+                                    class="check-box"/>
+                            <h2><?php echo $row["title"]?></h2>
+                            <?php } ?>
+                        <br>
+                        <small><?php echo "Time: ". $row["data_time"]. "<br> ";?></small>
                     </div>
                     <?php }} ?>
         </div>
     </div>
 </body>
 </html>
+
+
+
