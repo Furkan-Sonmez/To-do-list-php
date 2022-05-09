@@ -9,11 +9,11 @@ if (isset ($_POST ["id"])) {
         $todos = $conn -> prepare("SELECT id , checked FROM todos WHERE id=?");
         $todos -> execute([$id]);
 
-        $todo = $todos -> fetch();
+        $todo = $todos->fetch();
         $uId = $todo['id'];
         $checked = $todo['checked'];
 
-        $uChecked = $checked ? 0 : 1 ; 
+        $uChecked = $checked ? 0 : 1; 
 
         $res = $conn -> query("UPDATE todos SET checked = $uChecked WHERE id=$uId");
 
@@ -25,7 +25,6 @@ if (isset ($_POST ["id"])) {
         $conn=null;
         exit();
     }
-
 }else{
     header("Location: ../index.php?mess=error");
 }
