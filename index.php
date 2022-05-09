@@ -51,8 +51,8 @@ require 'db_conn.php';
                     while($row = mysqli_fetch_assoc($result)) {?>
                     <div class = "todo-item" >
                         
-                        <span id="<?php echo $row["id"];?>"
-                                class="remove-to-do">x</span>
+                        <span id="<?php echo $row['id']; ?>"
+                          class="remove-to-do">x</span>  
                         <?php if ($row["checked"]){?>
                             <input type="checkbox"
                                 class ="check-box"
@@ -72,25 +72,25 @@ require 'db_conn.php';
     </div>
     <script src = "js/jquery-3.2.1.min.js"></script>
     <script>
-        $(document).ready(function(){
+         $(document).ready(function(){
             $('.remove-to-do').click(function(){
                 const id = $(this).attr('id');
-                alert("deneme");
+                
+
                 $.post("app/remove.php", 
                       {
                           id: id
                       },
                       (data)  => {
+
                          if(data){
                              $(this).parent().hide(600);
                          }
                       }
                 );
             });
-        });
+         });
     </script>
 </body>
 </html>
-
-
 
