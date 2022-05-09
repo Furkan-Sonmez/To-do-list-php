@@ -6,7 +6,7 @@ if (isset ($_POST ["id"])) {
     if (empty($id)) {
         echo 0;
     }else{
-        $stmt = $conn->prepare("DELETE FROM todos(title) WHERE id=?");
+        $stmt = $conn->prepare("DELETE FROM todos WHERE id=?");
         $res = $stmt -> execute([$id]);
         if($res){
             echo 1; 
